@@ -7,9 +7,11 @@
         <!-- Latest Posts -->
         <main class="posts-listing col-lg-8"> 
           <div class="container">
+            <h4 class="card-body">Category : {{ cat.name }}</h4>
+
             <div class="row">
               <!-- post -->
-              {% for p in blogPost %}
+              {% for p in post %}
                 
               <div class="post col-xl-6">
                 <div class="post-thumbnail"><a href="{% url 'blog:post' id=p.id %}"><img src="{{ p.image.url }}" alt="..." class="img-fluid"></a></div>

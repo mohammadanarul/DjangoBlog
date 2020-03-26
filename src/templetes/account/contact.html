@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<section class="newsletter no-padding-top">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <img src="{% static 'img/contact.png' %}" alt="...">
+      </div>
+      <!-- <div class="col-6">
+        <h2 class="card-body">Our Team</h2>
+        <p>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae maxime facilis doloribus sed, earum alias
+          sint corporis nisi cum aut minus recusandae quam neque enim ipsum ad veritatis distinctio, repudiandae, illum
+          eum ea. Voluptas quibusdam illum, aspernatur voluptatem assumenda temporibus doloremque sit dolorem distinctio
+          tempora veritatis esse molestias eaque aperiam!
+        </p>
+      </div> -->
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Subscribe to Newsletter</h2>
+        <p class="text-big">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua.</p>
+      </div>
+      <div class="col-md-8">
+        <div class="form-holder">
+          <form action="#">
+            <div class="form-group">
+              <input type="email" name="email" id="email" placeholder="Type your email address">
+              <button type="submit" class="submit">Subscribe</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
+{% block script %}
+
+{% endblock script %}

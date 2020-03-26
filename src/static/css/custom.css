@@ -1,1 +1,16 @@
 /* your styles go here */
+#homePost{
+    height: 100%;
+    width: 100%;
+    image-resolution: 100%;
+}
+#profile_wrapper{
+    text-align: center;
+}
+#profile_pic{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
