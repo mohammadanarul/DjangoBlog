@@ -139,8 +139,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
 
 #Gmail Confarmations 
-EMAIL_USE_LTS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'ican4654@gmail.com'
-EMAIL_HOST_USER_PASSWORD = 'MD367075bd'
-EMAIL_PORT = 587
+# EMAIL_USE_LTS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'ican4654@gmail.com'
+# EMAIL_HOST_USER_PASSWORD = ''
+# EMAIL_PORT = 587
