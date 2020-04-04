@@ -28,6 +28,9 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,8 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'BlogApp'
+    'BlogApp',
+
+    
+    'ckeditor',
+    'ckeditor_uploader'
 ]
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -128,3 +137,10 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
+
+#Gmail Confarmations 
+EMAIL_USE_LTS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'ican4654@gmail.com'
+EMAIL_HOST_USER_PASSWORD = 'MD367075bd'
+EMAIL_PORT = 587

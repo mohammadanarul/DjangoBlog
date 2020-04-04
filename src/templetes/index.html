@@ -2,18 +2,18 @@
 {% load static %}
 {% block stylesheet %}
   <style>
-    #homePost{
-    height: 100px;
-    width: 100px;
-    position:fixed;
-    border-image-width: auto;
-}
+    /* #homePost
+    {
+    height: 100%;
+    width: 100%;
+    object-position: center;
+    } */
   </style>
 {% endblock stylesheet %}
 {% block content %}
   
     <!-- Hero Section-->
-    <section style="background: url({% static 'img/hero.jpg' %}); background-size: cover; background-position: center center" class="hero">
+    <section style="background: url({% static 'img/hero.jpg' %}); background-size: cover; background-position: center " class="hero">
       <div class="container">
         <div class="row">
           <div class="col-lg-7">
@@ -35,50 +35,83 @@
     </section>
     <section class="featured-posts no-padding-top">
       <div class="container">
-        <!-- Post-->
-        {% for p in post %}
-        <div class="row d-flex align-items-stretch">
-          <div class="text col-lg-7">
-            <div class="text-inner d-flex align-items-center">
-              <div class="content">
-                <header class="post-header">
-                  <div class="category"><a href="{% url 'blog:category' name=p.category %}">{{ p.category.name }}</a><a href="#">Technology</a></div><a href="{% url 'blog:post' id=p.id %}">
-                    <h2 class="h4">{{ p.title }}</h2></a>
-                </header>
-                <p>{{ p.body }}</p>
-                <footer class="post-footer d-flex align-items-center"><a href="{% url 'blog:account' %}" class="author d-flex align-items-center flex-wrap">
-                    <div class="avatar"><img src="{{ p.article_author.profile_picture.url }}" alt="..." class="img-fluid"></div>
-                    <div class="title"><span>{{ p.article_author.name.get_full_name }}</span></div></a>
-                  <div class="date"><i class="icon-clock"></i>{{ p.posted_on }}</div>
-                  <div class="comments"><i class="icon-comment"></i>12</div>
-                </footer>
+          <!-- Post-->
+          {% for p in contacts %}
+            <div class="row d-flex align-items-stretch">
+              <div class="text col-lg-7">
+                <div class="text-inner d-flex align-items-center">
+                  <div class="content">
+                    <header class="post-header">
+                      <div class="category"><a href="{% url 'blog:category' name=p.category %}">{{ p.category.name }}</a><a href="#">Technology</a></div><a href="{% url 'blog:post' id=p.id %}">
+                        <h2 class="h4">{{ p.title }}</h2></a>
+                    </header>
+                    <p>{{ p.body|safe }}</p>
+                    <footer class="post-footer d-flex align-items-center"><a href="{% url 'blog:userPost' name=p.article_author.name.username %}" class="author d-flex align-items-center flex-wrap">
+                        <div class="avatar"><img src="{{ p.article_author.profile_picture.url }}" alt="..." class="img-fluid"></div>
+                      <div class="title"><span>{{ p.article_author.name.username }}</span></div></a>
+                      <div class="date"><i class="icon-clock"></i>{{ p.posted_on }}</div>
+                      <div class="comments"><i class="icon-comment"></i>12</div>
+                    </footer>
+                  </div>
+                </div>
               </div>
+              <div class="image col-lg-5"><img src="{{ p.image.url }}" alt="..." id='homePost'></div>
             </div>
-          </div>
-          <div class="image col-lg-5"><img src="{{ p.image.url }}" alt="..." id='homePost'></div>
+            <!-- Post
+            <div class="row d-flex align-items-stretch">
+              <div class="image col-lg-5"><img src="{{ p.image.url }}" alt="..."></div>
+              <div class="text col-lg-7">
+                <div class="text-inner d-flex align-items-center">
+                  <div class="content">
+                    <header class="post-header">
+                      <div class="category"><a href="#">{{ p.category.name }}</a><a href="#">Technology</a></div><a href="{% url 'blog:post' id=p.id %}">
+                        <h2 class="h4">{{ p.title }}</h2></a>
+                    </header>
+                    <p>{{ p.body }}</p>
+                    <footer class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
+                        <div class="avatar"><img src="{% static 'img/avatar-2.jpg' %}" alt="..." class="img-fluid"></div>
+                        <div class="title"><span>John Doe</span></div></a>
+                      <div class="date"><i class="icon-clock"></i>{{ p.posted_on }}</div>
+                      <div class="comments"><i class="icon-comment"></i>12</div>
+                    </footer>
+                  </div>
+                </div>
+              </div> 
+            </div> -->
+          {% endfor %}
+          <div class="pagination">
+            <span class="step-links">
+                {% if contacts.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ contacts.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+                </span>
+        
+                {% if contacts.has_next %}
+                    <a href="?page={{ contacts.next_page_number }}">next</a>
+                    <a href="?page={{ contacts.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
         </div>
-        <!-- Post       
-        <div class="row d-flex align-items-stretch">
-          <div class="image col-lg-5"><img src="{{ p.image.url }}" alt="..."></div>
-          <div class="text col-lg-7">
-            <div class="text-inner d-flex align-items-center">
-              <div class="content">
-                <header class="post-header">
-                  <div class="category"><a href="#">{{ p.category.name }}</a><a href="#">Technology</a></div><a href="{% url 'blog:post' id=p.id %}">
-                    <h2 class="h4">{{ p.title }}</h2></a>
-                </header>
-                <p>{{ p.body }}</p>
-                <footer class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
-                    <div class="avatar"><img src="{% static 'img/avatar-2.jpg' %}" alt="..." class="img-fluid"></div>
-                    <div class="title"><span>John Doe</span></div></a>
-                  <div class="date"><i class="icon-clock"></i>{{ p.posted_on }}</div>
-                  <div class="comments"><i class="icon-comment"></i>12</div>
-                </footer>
-              </div>
-            </div>
+        <!-- <div class='row mt-5'>
+          <div class='col-12'
+            Pagination
+            <nav aria-label="Page navigation example">
+              <ul class="pagination pagination-template d-flex justify-content-center">
+                <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-left"></i></a></li>
+                <span class="current">
+                <li class="page-item"><a href="#" class="page-link active">#</a></li>
+                <li class="page-item"><a href="#" class="page-link">#</a></li>
+                <li class="page-item"><a href="#" class="page-link">#</a></li>
+                </span>
+                <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-right"></i></a></li>
+              </ul>
+            </nav>
           </div>
         </div> -->
-        {% endfor %}
       </div>
     </section>
     <!-- Divider Section-->

@@ -69,6 +69,13 @@
 {% block content %}
 <!--  ======================= Start Main Area ================================ -->
 <main class="site-main">
+	
+	{% for message in messages %}
+		<div class="d-flex justify-content-center">
+			<span class="bg-warning p-2 mt-3" id="messages">{{ message }}</span>
+		</div>
+	{% endfor %}
+		
     <div class="container h-100">
 		<div class="d-flex justify-content-center h-100">
 			<div class="user_card">
@@ -81,13 +88,13 @@
 						{% csrf_token %}
 						<div class="input-group mb-2">
 							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+								<span class="input-group-text"><i class="fa fa-envelope-square"></i></span>
 							</div>
 							<input type="text" name="username">
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
+								<span class="input-group-text"><i class="fa fa-key"></i></span>
 							</div>
 							<input type="password" name="password">
 						</div>
@@ -97,9 +104,9 @@
 					</form>
 				</div>
 
-					{% for message in messages %}
+					<!-- {% for message in messages %}
 						<p id='messages'>{{ message }}</p>
-					{% endfor %}
+					{% endfor %} -->
 
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">

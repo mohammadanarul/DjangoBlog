@@ -9,7 +9,7 @@
           <div class="container">
             <div class="row">
               <!-- post -->
-              {% for p in blogPost %}
+              {% for p in post %}
                 
               <div class="post col-xl-6">
                 <div class="post-thumbnail"><a href="{% url 'blog:post' id=p.id %}"><img src="{{ p.image.url }}" alt="..." class="img-fluid"></a></div>
@@ -19,71 +19,18 @@
                     <div class="category"><a href="{% url 'blog:category' name=p.category %}">{{ p.category.name }}</a></div>
                   </div><a href="{% url 'blog:post' id=p.id %}">
                     <h3 class="h4">{{ p.title }}</h3></a>
-                  <p class="text-muted">{{ p.body }}</p>
-                  <footer class="post-footer d-flex align-items-center"><a href="{% url 'blog:account' %}" class="author d-flex align-items-center flex-wrap">
+                    <hr />
+                  <p class="text-muted">{{ p.body|safe }}</p>
+                  <footer class="post-footer d-flex align-items-center"><a href="{% url 'blog:userProfile' %}" class="author d-flex align-items-center flex-wrap">
                       {% comment %} <div class="avatar"><img src="{{ p.article_author.profile_picture.url }}" alt="..." class="img-fluid"></div> {% endcomment %}
-                      <div class="title"><span>{{ p.article_author.name.get_full_name }}</span></div></a>
+                      <div class="title"><span>{{ p.article_author.name.username }}</span></div></a>
                     <div class="date"><i class="icon-clock"></i>{{ p.posted_on }}</div>
                     <div class="comments meta-last"><i class="icon-comment"></i>12</div>
                   </footer>
                 </div>
               </div>
               {% endfor %}
-              <!-- post            
-              <div class="post col-xl-6">
-                <div class="post-thumbnail"><a href="post.html"><img src="{% static 'img/blog-post-2.jpg' %}" alt="..." class="img-fluid"></a></div>
-                <div class="post-details">
-                  <div class="post-meta d-flex justify-content-between">
-                    <div class="date meta-last">20 May | 2016</div>
-                    <div class="category"><a href="#">Business</a></div>
-                  </div><a href="post.html">
-                    <h3 class="h4">Alberto Savoia Can Teach You About Interior</h3></a>
-                  <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                  <div class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
-                      <div class="avatar"><img src="{% static 'img/avatar-2.jpg' %}" alt="..." class="img-fluid"></div>
-                      <div class="title"><span>John Doe</span></div></a>
-                    <div class="date"><i class="icon-clock"></i> 2 months ago</div>
-                    <div class="comments meta-last"><i class="icon-comment"></i>12</div>
-                  </div>
-                </div>
-              </div>
-              <!-- post             -->
-              <!--<div class="post col-xl-6">
-                <div class="post-thumbnail"><a href="post.html"><img src="{% static 'img/blog-post-3.jpeg' %}" alt="..." class="img-fluid"></a></div>
-                <div class="post-details">
-                  <div class="post-meta d-flex justify-content-between">
-                    <div class="date meta-last">20 May | 2016</div>
-                    <div class="category"><a href="#">Business</a></div>
-                  </div><a href="post.html">
-                    <h3 class="h4">Alberto Savoia Can Teach You About Interior</h3></a>
-                  <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                  <div class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
-                      <div class="avatar"><img src="{% static 'img/avatar-3.jpg' %}" alt="..." class="img-fluid"></div>
-                      <div class="title"><span>John Doe</span></div></a>
-                    <div class="date"><i class="icon-clock"></i> 2 months ago</div>
-                    <div class="comments meta-last"><i class="icon-comment"></i>12</div>
-                  </div>
-                </div>
-              </div>-->
-              <!-- post -->
-              <!--<div class="post col-xl-6">
-                <div class="post-thumbnail"><a href="post.html"><img src="{% static 'img/blog-post-4.jpeg' %}" alt="..." class="img-fluid"></a></div>
-                <div class="post-details">
-                  <div class="post-meta d-flex justify-content-between">
-                    <div class="date meta-last">20 May | 2016</div>
-                    <div class="category"><a href="#">Business</a></div>
-                  </div><a href="post.html">
-                    <h3 class="h4">Alberto Savoia Can Teach You About Interior</h3></a>
-                  <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                  <div class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
-                      <div class="avatar"><img src="{% static 'img/avatar-1.jpg' %}" alt="..." class="img-fluid"></div>
-                      <div class="title"><span>John Doe</span></div></a>
-                    <div class="date"><i class="icon-clock"></i> 2 months ago</div>
-                    <div class="comments meta-last"><i class="icon-comment"></i>12</div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
+            </div>
             <div class='row'>
             <div class='col-12'
             <!-- Pagination -->
@@ -106,10 +53,10 @@
             <header>
               <h3 class="h6">Search the blog</h3>
             </header>
-            <form action="#" class="search-form">
+            <form action="" class="search-form" method="GET">
               <div class="form-group">
-                <input type="search" placeholder="What are you looking for?">
-                <button type="submit" class="submit"><i class="icon-search"></i></button>
+                <input type="text" name="q" placeholder="What are you looking for?">
+                <button class="submit"><i class="icon-search"></i></button>
               </div>
             </form>
           </div>

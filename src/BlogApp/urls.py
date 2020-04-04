@@ -7,14 +7,19 @@ from django.urls import path, include
 from .views import (
     userRegister,
     userLogin,
+    userLogOut,
 	homeView,
 	blogView,
 	postView,
     userContact,
-    userAccount,
-   postCategory
+    makeUserProfile,
+    postCategory,
+    createPost,
+    upDatePost,
+    deletePost,
+    userProfilePost
 )
-app_name = 'blog'
+app_name = 'BlogApp'
 urlpatterns = [
     # path('', homeView),
     path('', homeView, name='home'),
@@ -22,9 +27,14 @@ urlpatterns = [
     path('blog/', blogView, name='BlogPost'),
     path('register/', userRegister, name='register'),
     path('login/', userLogin, name='login'),
+    path('userlogout/', userLogOut, name='logOut'),
     path('contact/', userContact, name='contact'),
-    path("profile/", userAccount, name='account'),
-    path('postcategory/<name>/', postCategory, name='category')
+    path("profile/", makeUserProfile, name='userProfile'),
+    path('<name>/', userProfilePost, name='userPost'),
+    path('postcategory/<name>/', postCategory, name='category'),
+    path('createPost', createPost, name='ceartePost'),
+    path('update/<int:pk>/', upDatePost, name='update'),
+    path('delete/<int:pk>/', deletePost, name='deletePost'),
 ]
 
 if settings.DEBUG:

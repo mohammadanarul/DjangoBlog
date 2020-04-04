@@ -37,9 +37,9 @@
             <div class="close-btn"><i class="icon-close"></i></div>
             <div class="row d-flex justify-content-center">
               <div class="col-md-8">
-                <form action="#">
+                <form action="" method="GET">
                   <div class="form-group">
-                    <input type="search" name="search" id="search" placeholder="What are you looking for?">
+                    <input type="search" name="q" id="search" placeholder="What are you looking for?">
                     <button type="submit" class="submit"><i class="icon-search-1"></i></button>
                   </div>
                 </form>
@@ -57,16 +57,34 @@
           <!-- Navbar Menu -->
           <div id="navbarcollapse" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
+              {% if request.user.is_authenticated %}
+                <li class="nav-item"><a href="{% url 'blog:userProfile'  %}" class="nav-link font-weight-bold"><span>Hello,{{ request.user }}</span></a>
+                </li>
+              {% endif %}
               <li class="nav-item"><a href="{% url 'blog:home'  %}" class="nav-link active">Home</a>
               </li> 
               <li class="nav-item"><a href="{% url 'blog:BlogPost' %}" class="nav-link ">Blog</a>
               </li>
+              
+              {% if request.user.is_authenticated %}
+              <li class="nav-item"><a href="{% url 'blog:ceartePost' %}" class="nav-link ">Post</a>
+              </li>
+              {% endif %}
               <li class="nav-item"><a href="{% url 'blog:contact' %}" class="nav-link ">Contact</a>
               </li>
-              <li class="nav-item"><a href="{% url 'blog:login' %}" class="nav-link ">Login</a>
-              </li>
-              <li class="nav-item"><a href="{% url 'blog:register' %}" class="nav-link ">Sing up</a>
-              </li>
+              
+              {% if request.user.is_authenticated %}
+                <li class="nav-item"><a href="#" class="nav-link">About</a>
+                </li>
+                <li class="nav-item"><a href="{% url 'blog:logOut' %}" class="nav-link ">Logout</a>
+                </li>
+              {% else %}
+                <li class="nav-item"><a href="{% url 'blog:login' %}" class="nav-link ">Login</a>
+                </li>
+              {% endif %}
+                
+              <!-- <li class="nav-item"><a href="{% url 'blog:register' %}" class="nav-link ">Sing up</a>
+              </li> -->
             </ul>
             <div class="navbar-text"><a href="#" class="search-btn"><i class="icon-search-1"></i></a></div>
             <ul class="langs navbar-text"><a href="#" class="active">EN</a><span>           </span><a href="#">ES</a></ul>
@@ -83,7 +101,7 @@
         <div class="row">
           <div class="col-md-4">
             <div class="logo">
-              <h6 class="text-white">Bootstrap Blog</h6>
+              <h6 class="text-white">Bootstrap4 Blog</h6>
             </div>
             <div class="contact-details">
               <p>53 Broadway, Broklyn, NY 11249</p>
@@ -101,7 +119,7 @@
           <div class="col-md-4">
             <div class="menus d-flex">
               <ul class="list-unstyled">
-                <li> <a href="{% url 'blog:account' %}">My Account</a></li>
+                <li> <a href="{% url 'blog:userProfile' %}">My Account</a></li>
                 <li> <a href="#">Add Listing</a></li>
                 <li> <a href="#">Pricing</a></li>
                 <li> <a href="#">Privacy &amp; Policy</a></li>
@@ -110,7 +128,7 @@
                 <li> <a href="#">Our Partners</a></li>
                 <li> <a href="#">FAQ</a></li>
                 <li> <a href="#">How It Works</a></li>
-                <li> <a href="#">Contact</a></li>
+                <li> <a href="{% url 'blog:contact' %}">Contact</a></li>
               </ul>
             </div>
           </div>

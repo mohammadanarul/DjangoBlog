@@ -7,75 +7,38 @@
 {% endblock stylesheet %}
 {% block content %}
 <div class="container card-body">
+    {% for message in messages %}
+      <div class="d-flex justify-content-center">
+        <div id="messages" class="alert">
+          {{ message }}
+        </div>
+      </div>
+    {% endfor %}
+    <a href="{% url 'blog:ceartePost' %}" class="btn btn-outline-primary pull pull-right">Post Add</a>
+    <br /><br />
     <div class="row">
-        <div class="col-md-3">
-            <div class="card card-body" id='profile_wrapper'>
-                <img id='profile_pic' src="{{ author_post.profile_picture.url }}" alt="">
-                <h4>{{ author_post.name.get_full_name }}</h4>
-                <hr />
-                <p>{{ author_post.datails }}</p>
-            </div>
-        </div>
-        <div class="col-md-9">
-            <div class="card card-body">
-                <h4>My Details</h4>
-                <hr />
-                <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore consectetur numquam amet magni
-                    sit!
-                    Nesciunt fuga harum autem ab voluptatibus. Earum alias odio repellat mollitia, vitae voluptatem
-                    molestiae. Eligendi vel voluptatum officiis maxime cum, ea amet aperiam deleniti distinctio
-                    accusantium nam minus odit illum, recusandae perferendis? Possimus fugit sunt repudiandae laudantium
-                    saepe ea facilis delectus laboriosam, impedit sint aperiam ducimus tempora, enim eos nam facere,
-                    nostrum suscipit! Mollitia maxime quia commodi quam eaque, aut amet nemo maiores esse iste dicta.
-                    Sapiente distinctio totam quos explicabo alias modi cum porro tenetur. Eligendi quasi dignissimos
-                    eaque neque aspernatur soluta pariatur necessitatibus sit?
-                </p>
-                <ul class="social-menu">
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-behance"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- Profile Main Contacr Start -->
-    <br />
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card card-body">
-                <h4>Django Project</h4>
-                <hr />
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum quaerat quam ab perferendis suscipit
-                    esse temporibus harum commodi voluptatum! Sequi error quia nisi voluptate ex blanditiis autem, nulla
-                    enim perspiciatis architecto corporis harum tempora delectus totam fuga inventore, debitis veniam
-                    deleniti rerum? Ab dolor ex quod reiciendis facilis voluptate ea quo praesentium fugiat tenetur quis
-                    ducimus quos nihil, dicta mollitia? Perferendis fugiat cupiditate eum cumque incidunt dolores ut
-                    veritatis. Ad veniam commodi nisi perspiciatis vero illo cum dolore! Non, molestias ipsum. Inventore
-                    quod laborum corporis soluta error! Officiis culpa quibusdam recusandae, aliquid repellendus aperiam
-                    eaque possimus velit tempore enim! Quas!
-                </p>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card card-body">
-                <h4>Web Design Project</h4>
-                <hr />
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum quaerat quam ab perferendis suscipit
-                    esse temporibus harum commodi voluptatum! Sequi error quia nisi voluptate ex blanditiis autem, nulla
-                    enim perspiciatis architecto corporis harum tempora delectus totam fuga inventore, debitis veniam
-                    deleniti rerum? Ab dolor ex quod reiciendis facilis voluptate ea quo praesentium fugiat tenetur quis
-                    ducimus quos nihil, dicta mollitia? Perferendis fugiat cupiditate eum cumque incidunt dolores ut
-                    veritatis. Ad veniam commodi nisi perspiciatis vero illo cum dolore! Non, molestias ipsum. Inventore
-                    quod laborum corporis soluta error! Officiis culpa quibusdam recusandae, aliquid repellendus aperiam
-                    eaque possimus velit tempore enim! Quas!
-                </p>
-            </div>
-        </div>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Author</th>
+                <th scope="col">Title</th>
+                <th scope="col">Posted On</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            {% for post in userPost %}
+            <tbody>
+              <tr>
+                <th scope="row">{{ post.id }}</th>
+                <td>{{ userAuthor.name }}</td>
+                <td>{{ post.title }}</td>
+                <td>{{ post.posted_on }}</td>
+                <td><a href="{% url 'blog:deletePost' pk=post.id %}"><button type="button" class="btn btn-outline-danger border-0">Delete</button></a> || <a href="{% url 'blog:update' pk=post.id %}"><button type="button" class="btn btn-outline-info border-0">Exit</button></a></td>
+              </tr>
+            </tbody>
+            {% endfor %}
+          </table>
     </div>
     <!-- Profile Main Contacr End -->
 </div>
