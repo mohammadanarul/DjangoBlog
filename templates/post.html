@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+<div class="container">
+  <div class="row">
+    <!-- Latest Posts -->
+    <main class="post blog-post col-lg-8">
+      <div class="container">
+        <div class="post-single">
+          <div class="post-thumbnail"><img src="{{ post.image.url }}" alt="..." class="img-fluid"></div>
+          <div class="post-details">
+            <div class="post-meta d-flex justify-content-between">
+              <div class="category"><a href="{% url 'blog:category' name=post.category %}">{{ post.category.name }}</a><a href="#">Financial</a></div>
+            </div>
+            <h1>{{ post.title }}<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
+            <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a
+                href="{% url 'blog:user-post' name=post.article_author.name.username %}" class="author d-flex align-items-center flex-wrap">
+                <div class="avatar"><img src="{{ post.article_author.profile_picture.url }}" alt="..."
+                    class="img-fluid"></div>
+                <div class="title"><span>{{ post.article_author.name.get_full_name }}</span></div>
+              </a>
+              <div class="d-flex align-items-center flex-wrap">
+                <div class="date"><i class="icon-clock"></i>{{ post.posted_on }}</div>
+                <div class="views"><i class="icon-eye"></i> {{ post.blog_post_views }}</div>
+                <div class="views">{{ post.likes.count }} like</div>
+                
+                {% if request.user.is_authenticated %}
+                  <form action="{% url 'blog:likes' %}" method="POST">
+                    {% csrf_token %}
+                    
+                    {% if is_liked %}
+                      <button type="submit" name="article_id" value="{{ post.id }}"><i class="likes fa fa-heart"></i></button>
+                    {% else %}
+                      <button type="submit" name="article_id" value="{{ post.id }}"><i class="likes fa fa-heart-o"></i></button>
+                    {% endif %}   
+                  </form>
+                {% endif %}
+                  
+                <div class="heart meta-last">
+                  
+                </div>
+                <div class="comments meta-last"><i class="icon-comment"></i>{{ comments.count }}</div>
+              </div>
+            </div>
+            <div class="post-body">
+              <p class="lead">{{ post.body|safe }}</p>
+              <blockquote class="blockquote">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                  aliquip.</p>
+                <footer class="blockquote-footer">Someone famous in
+                  <cite title="Source Title">Source Title</cite>
+                </footer>
+              </blockquote>
+            </div>
+            
+            <div class="post-tags"><a href="#" class="tag">#Business</a><a href="#" class="tag">#Tricks</a><a href="#"
+                class="tag">#Financial</a><a href="#" class="tag">#Economy</a></div>
+            <div class="posts-nav d-flex justify-content-between align-items-stretch flex-column flex-md-row">
+              <a href="?page={{ post.previous_page_number }}" class="prev-post text-left d-flex align-items-center">
+                <div class="icon prev"><i class="fa fa-angle-left"></i></div>
+                <div class="text"><strong class="text-primary">Previous Post </strong>
+                  <h6>{{ post.title }}</h6>
+                </div>
+              </a>
+
+              <a href="?page={{ post.next_page_number }}" class="next-post text-right d-flex align-items-center justify-content-end">
+                <div class="text"><strong class="text-primary">Next Post </strong>
+                  <h6>{{ post.title }}</h6>
+                </div>
+                <div class="icon next"><i class="fa fa-angle-right"> </i></div>
+              </a>
+            </div>
+
+            <div class="post-comments">
+              <header>
+                <h3 class="h6">Post Comments<span class="no-of-comments">
+                  {% if comments %}
+                    {{ comments.count }}
+                  {% else %}
+                    <strong>0</strong>
+                  {% endif %}
+                </span></h3>
+              </header>
+
+              {% for comment in comments %}
+
+                <div class="comment">
+                  <div class="comment-header d-flex justify-content-between">
+                    <div class="user d-flex align-items-center">
+                      <div class="image"><img src="{{ comment.user.profile_picture.url }}" alt="..."
+                          class="img-fluid rounded-circle"></div>
+                      <div class="title"><strong>{{ comment.user.username }}</strong><span class="date">{{ comment.timestamp|timesince }}</span></div>
+                    </div>
+                  </div>
+                  <div class="comment-body">
+                    <p>
+                      {{ comment.post_comment }}
+                      <button class="reply-btn btn btn-outline-dark btn-sm float-right">Reply</button>
+                    </p>
+                  </div>
+                </div>
+                 <!-- reply comment section -->
+                 <div class="add-comment">
+                  <div class="replied-comments" style="display: none;">
+                  {% for reply in comment.replies.all %}
+                    <div class="comment">
+                      <div class="comment-header d-flex justify-content-between">
+                        <div class="user d-flex align-items-center">
+                          <div class="image"><img src="{{ reply.user.profile_picture.url }}" alt="..."
+                              class="img-fluid rounded-circle"></div>
+                          <div class="title"><strong>{{ reply.user.username }}</strong><span class="date">{{ reply.timestamp|timesince }}</span></div>
+                        </div>
+                      </div>
+                      <div class="comment-body">
+                        <p>
+                          {{ reply.post_comment }}
+                        </p>
+                      </div>
+                    </div>
+                  {% endfor %}
+                  <div class="row">
+                    <form action="" class="commenting-form" method="POST">
+                      {% csrf_token %}
+                      <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                      {{ comment_form.as_p }}
+                       <div class="row">
+                        <!-- <div class="form-group col-md-12">
+                          <textarea name="comment_id" value='comment.id' placeholder="Type your comment" class="form-control"></textarea>
+                        </div> -->
+                        {% if user.is_authenticated %}
+                          <div class="form-group col-md-12">
+                            <button class="btn btn-secondary">Submit Comment</button>
+                          </div>
+                        {% else %}
+                          <a href="{% url 'blog:login' %}" class="btn btn-primary ">Login</a>
+                        {% endif %}
+                    </form>
+                    </div>
+                  </div>
+                  </div>
+                  {% empty %}
+                  <span>Sorry Comment Not Fount</span>
+              {% endfor %}
+
+
+            <div class="add-comment">
+              <header>
+                <h3 class="h6">Leave a reply</h3>
+              </header>
+                <form action="" class="commenting-form" method="POST">
+                  {{ form.as_p }}
+                  <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                  {% csrf_token %}
+                   <div class="row">
+                    <div class="form-group col-md-12">
+                      <textarea name="post_comment" id="post_comment" placeholder="Type your comment" class="form-control"></textarea>
+                    </div>
+                    {% if user.is_authenticated %}
+                      <div class="form-group col-md-12">
+                        <button class="btn btn-secondary">Submit Comment</button>
+                      </div>
+                    {% else %}
+                      <a href="{% url 'blog:login' %}" class="btn btn-primary ">Login</a>
+                    {% endif %}
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <aside class="col-lg-4">
+      <!-- Widget [Search Bar Widget]-->
+      <div class="widget search">
+        <header>
+          <h3 class="h6">Search the blog</h3>
+        </header>
+        <form action="#" class="search-form">
+          <div class="form-group">
+            <input type="text" name="q" placeholder="What are you looking for?">
+            <button class="submit"><i class="icon-search"></i></button>
+          </div>
+        </form>
+      </div>
+      <!-- Widget [Latest Posts Widget]        -->
+      <div class="widget latest-posts">
+        <header>
+          <h3 class="h6">Releted Posts</h3>
+        </header>
+        {% for p in related %}
+        <div class="blog-posts"><a href="#">
+          <div class="item d-flex align-items-center">
+            <a href="{% url 'blog:post' id=p.id %}"><div class="image"><img src="{{ p.image.url }}" alt="..." class="img-fluid"></div>
+            <div class="title"><strong>{{ p.title }}</strong></a>
+              <div class="d-flex align-items-center">
+                <div class="views"><i class="icon-eye"></i>{{ p.blog_post_views }}</div>
+                <div class="comments"><i class="icon-comment"></i></div>
+              </div>
+            </div>
+          </div></a>
+        </div>
+        {% endfor %}
+      </div>
+      <!-- Widget [Categories Widget]-->
+      <div class="widget categories">
+        <header>
+          <h3 class="h6">Categories</h3>
+        </header>
+        {% for p in categories %}
+              <div class="item d-flex justify-content-between"><a href="#">{{ p.name }}</a><span>{{ p.posts_count }}</span></div>
+        {% endfor %}
+      </div>
+      <!-- Widget [Tags Cloud Widget]-->
+      <div class="widget tags">
+        <header>
+          <h3 class="h6">Tags</h3>
+        </header>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#" class="tag">#Business</a></li>
+          <li class="list-inline-item"><a href="#" class="tag">#Technology</a></li>
+          <li class="list-inline-item"><a href="#" class="tag">#Fashion</a></li>
+          <li class="list-inline-item"><a href="#" class="tag">#Sports</a></li>
+          <li class="list-inline-item"><a href="#" class="tag">#Economy</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>
+
+{% endblock content %}
+{% block script %}
+
+{% endblock script %}

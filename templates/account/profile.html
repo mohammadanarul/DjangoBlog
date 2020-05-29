@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  
+{% endblock title %}
+{% block stylesheet %}
+{% endblock stylesheet %}
+{% block content %}
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}" role="alert">
+           <a class="close" data-dismiss="alert">×</a>
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+    <div class="cover">
+        <img src="{{ userAuthor.profile_background_picture.url }}" alt="">
+    </div>
+    <div class="container">
+        <div class="logo-picture">
+            <img src="{{ userAuthor.profile_picture.url }}" alt="">
+            <i class="pe-7s-camera camera"></i>
+        </div>
+        <div class="row">  
+            <div class="col-md-12 details">
+                <a class="profile-btn" href="{% url 'blog:ceartePost' %}">Post</a>
+                <!-- <a class="profile-btn" href="#">Post update</a> -->
+                <a class="profile-btn" href="#">Friend</a>
+                <a class="profile-btn" href="{% url 'blog:create-category' %}">Category</a>
+            </div>
+
+        </div>
+    </div>
+    <hr/>
+    <div class="container">
+        <div class="row post_list">
+            {% for p in post %}
+                <div class="col-md-3 mb-3 post-img">
+                    <img src="{{ p.image.url }}" alt="">
+                </div>
+                <div class="col-md-8 post-link mb-3">
+                    <a href="{% url 'blog:post' id=p.id %}"><h1>{{ p.title }}</h1></a>
+                    <p>{{ p.body|truncatewords:20|safe }}</p>
+                    <a href="">{{ userAuthor.name.username }}</a>
+                    <a class="link-icon" href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                    <a class="link-icon" href="#"><i class="fa fa-comment-o"></i></a>
+                    <a class="link-icon" href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                    <a href="{% url 'blog:update' pk=p.pk%}"><i class="fa fa-edit"></i></a>
+                </div>
+            {% endfor %}
+        </div>
+        <div class='row'>
+            <div class='col-12'
+              <!-- Pagination -->
+              <nav aria-label="Page navigation example">
+                <ul class="pagination pagination-template d-flex justify-content-center">
+                  
+                  {% if post.has_previous %}
+                    <li class="page-item"><a href="?page={{ post.previous_page_number }}" class="page-link"> <i class="fa fa-angle-left"></i></a></li>
+                    <li class="page-item"><a href="?page={{ post.previous_page_number }}" class="page-link active">{{ post.previous_page_number }}</a></li>
+                  {% else %}
+                    <li class="page-item disabled"><a href="#" class="page-link"> <i class="fa fa-angle-left sr-only"></i></a></li>
+                  {% endif %}
+                  <li class="page-item"><a href="?page={{ post.number }}" class="page-link active">{{ post.number }}</a></li>
+                  {% if post.has_next %}
+                    <li class="page-item"><a href="?page={{ post.next_page_number }}" class="page-link active">{{ post.next_page_number }}</a></li>
+                    <li class="page-item"><a href="?page={{ post.next_page_number }}" class="page-link"> <i class="fa fa-angle-right"></i></a></li>
+                  {% else %}
+                    <li class="page-item disabled"><a href="#" class="page-link"> <i class="fa fa-angle-right sr-only"></i></a></li>
+                  {% endif %}
+                    
+                </ul>
+              </nav>
+            </div>
+          </div>
+    </div>
+{% endblock content %}
+{% block script %}
+
+{% endblock script %}

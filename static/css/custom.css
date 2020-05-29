@@ -1,4 +1,18 @@
 /* your styles go here */
+.alert {
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 0rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    text-align: center;
+}
+.alert a{
+    cursor: pointer;
+}
+.likes{
+    color: red;
+}
 #homePost{
     height: 100%;
     width: 100%;
@@ -14,3 +28,298 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.recentPost img 
+{
+    position: relative;
+    width: 400px;
+    height: 250px;
+}
+
+.image-galery img{
+    width: 250px;
+    height: 250px;
+}
+.newsletter{
+    height: 80vh;
+    background-image: url('../img/communication.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.newsletter .contact_us{
+    margin-top: 100px;
+    background-color: aqua;
+    height: 400px;
+    width: 600px;
+    color: #35495e;
+    box-shadow: 0px 0px 0px 0px #35495e;
+    transition: .30s;
+    opacity: .70;
+    border-radius: 50px;
+}
+.newsletter .contact_us:hover{
+    box-shadow: 20px 30px 10px -10px #35495e;
+}
+.newsletter .contact_us h2{
+    opacity: 1;
+    padding-top: 30px;
+    font-size: 30px;
+    text-align: center;
+    color: #35495e;
+    font-family: cursive;
+}
+.newsletter .contact_us p{
+    opacity: 1;
+    font-size: 20px;
+    padding-top: 20px;
+    align-items: center;
+    color: #35495e;
+    font-family: sans-serif;
+    text-align: center;
+}
+.newsletter .contact_us .form-group{
+    margin-top: 60px;
+    padding-left: 80px;
+    width: 500px;
+}
+#email{
+    border-radius: 30px;
+}
+.submit{
+    border-radius: 30px;
+}
+.cover{
+    height: 500px;
+    width: 100%;
+}
+.cover img{
+    width: 100%;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+}
+.details{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+.details .profile-btn{
+    height: 45px;
+    width: 140px;
+    color: #000000;
+    margin-left: 30px;
+    border: 1px solid red;
+    border-radius: 30px;
+    text-align: center;
+    padding-top: 6px;
+    font-size: 20px;
+    text-decoration: none;
+}
+.profile-btn:hover{
+    background-color: red;
+    color: #ffffff;
+}
+.logo-picture{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.logo-picture img{
+    height: 400px;
+    width: 400px;
+    border-radius: 50%;
+    margin: 0;
+    margin-top: -200px;
+}
+.post-img img{
+    height: 150px;
+    width: 250px;
+}
+.post-link h1{
+    font-size: 30px;
+    font-family: roboto;
+    color: #35495e;
+}
+.post-link p{
+    font-size: 18px;
+    font-family: sans-serif;
+    color: #35495e;
+}
+.post-link a{
+    text-decoration: none;
+}
+.post-link a i{
+    font-size: 25px;
+    color: red;
+    padding-left: 25px;
+}
+/* About section */
+.banner{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url('../img/banner0.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    font-family: cursive;
+}
+.about h1{
+    font-size: 30px;
+    font-family: cursive;
+    color: slategrey;
+}
+.about p{
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.about-skill h1{
+    font-size: 30px;
+    font-family: cursive;
+    color: slategrey;
+}
+.about-skill h4{
+    margin-top: 8px;
+    font-size: 20px;
+    color: slategrey;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.our_services{
+    height: 50vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url('../img/our_services.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+}
+.our_services_pic{
+    width: 18rem;
+    height: 10rem;
+}
+/* Start Our Team section  */
+.row.heading h2 {
+    color: #fff;
+    font-size: 52.52px;
+    line-height: 95px;
+    font-weight: 400;
+    text-align: center;
+    margin: 0 0 40px;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+}
+ul{
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+.heading.heading-icon {
+    display: block;
+}
+.padding-lg {
+	display: block;
+	padding-top: 60px;
+	padding-bottom: 60px;
+}
+.practice-area.padding-lg {
+    padding-bottom: 55px;
+    padding-top: 55px;
+}
+.practice-area .inner{ 
+     border:1px solid #999999; 
+	 text-align:center; 
+	 margin-bottom:28px; 
+	 padding:40px 25px;
+}
+.our-webcoderskull .cnt-block:hover {
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    border: 0;
+}
+.practice-area .inner h3{ 
+    color:#3c3c3c; 
+	font-size:24px; 
+	font-weight:500;
+	font-family: 'Poppins', sans-serif;
+	padding: 10px 0;
+}
+.practice-area .inner p{ 
+    font-size:14px; 
+	line-height:22px; 
+	font-weight:400;
+}
+.practice-area .inner img{
+	display:inline-block;
+}
+
+
+.our-webcoderskull{
+  background: url("../img/right-sider-banner.png") no-repeat center top / cover;
+  
+}
+.our-webcoderskull .cnt-block{ 
+   float:left; 
+   width:100%; 
+   background:#fff; 
+   padding:30px 20px; 
+   text-align:center; 
+   border:2px solid #d5d5d5;
+   margin: 0 0 28px;
+}
+.our-webcoderskull .cnt-block figure{
+   width:148px; 
+   height:148px; 
+   border-radius:100%; 
+   display:inline-block;
+   margin-bottom: 15px;
+}
+.our-webcoderskull .cnt-block img{ 
+   width:148px; 
+   height:148px; 
+   border-radius:100%; 
+}
+.our-webcoderskull .cnt-block h3{ 
+   color:#2a2a2a; 
+   font-size:20px; 
+   font-weight:500; 
+   padding:6px 0;
+   text-transform:uppercase;
+}
+.our-webcoderskull .cnt-block h3 a{
+  text-decoration:none;
+	color:#2a2a2a;
+}
+.our-webcoderskull .cnt-block h3 a:hover{
+	color:#337ab7;
+}
+.our-webcoderskull .cnt-block p{ 
+   color:#2a2a2a; 
+   font-size:13px; 
+   line-height:20px; 
+   font-weight:400;
+}
+.our-webcoderskull .cnt-block .follow-us{
+	margin:20px 0 0;
+}
+.our-webcoderskull .cnt-block .follow-us li{ 
+    display:inline-block; 
+	width:auto; 
+	margin:0 5px;
+}
+.our-webcoderskull .cnt-block .follow-us li .fa{ 
+   font-size:24px; 
+   color:#767676;
+}
+.our-webcoderskull .cnt-block .follow-us li .fa:hover{ 
+   color:#025a8e;
+}
+/* Our Team section End */

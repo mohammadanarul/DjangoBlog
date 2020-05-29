@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+    <div class="container">
+      <div class="row">
+        <!-- Latest Posts -->
+        <main class="posts-listing col-lg-8"> 
+          <div class="container">
+            <div class="row">
+              <!-- post -->
+              {% for p in post %}
+                
+              <div class="post col-xl-6">
+                <div class="post-thumbnail"><a href="{% url 'blog:post' id=p.id %}"><img src="{{ p.image.url }}" alt="..." class="img-fluid"></a></div>
+                <div class="post-details">
+                  <div class="post-meta d-flex justify-content-between">
+                    <div class="date meta-last">{{ p.posted_on }}</div>
+                    <div class="category"><a href="{% url 'blog:category' name=p.category %}">{{ p.category.name }}</a></div>
+                  </div><a href="{% url 'blog:post' id=p.id %}">
+                    <h3 class="h4">{{ p.title }}</h3></a>
+                    <hr />
+                  <p class="text-muted">{{ p.body|truncatewords:20|safe }}</p>
+                  <footer class="post-footer d-flex align-items-center"><a href="{% url 'blog:user-post' name=p.article_author.name.username %}" class="author d-flex align-items-center flex-wrap">
+                      {% comment %} <div class="avatar"><img src="{{ p.article_author.profile_picture.url }}" alt="..." class="img-fluid"></div> {% endcomment %}
+                      <div class="title"><span>{{ p.article_author.name.username }}</span></div></a>
+                    <div class="date"><i class="icon-clock"></i>{{ p.posted_on }} | {{ p.likes.count }} like</div>
+                    <div class="comments meta-last"><i class="icon-comment"></i>{{ p.comments.count }}</div>
+                  </footer>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            <div class='row'>
+              <div class='col-12'
+                <!-- Pagination -->
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination pagination-template d-flex justify-content-center">
+                    
+                    {% if post.has_previous %}
+                      <li class="page-item"><a href="?page={{ post.previous_page_number }}" class="page-link"> <i class="fa fa-angle-left"></i></a></li>
+                      <li class="page-item"><a href="?page={{ post.previous_page_number }}" class="page-link active">{{ post.previous_page_number }}</a></li>
+                    {% else %}
+                      <li class="page-item disabled"><a href="#" class="page-link"> <i class="fa fa-angle-left sr-only"></i></a></li>
+                    {% endif %}
+                    <li class="page-item"><a href="?page={{ post.number }}" class="page-link active">{{ post.number }}</a></li>
+                    {% if post.has_next %}
+                      <li class="page-item"><a href="?page={{ post.next_page_number }}" class="page-link active">{{ post.next_page_number }}</a></li>
+                      <li class="page-item"><a href="?page={{ post.next_page_number }}" class="page-link"> <i class="fa fa-angle-right"></i></a></li>
+                    {% else %}
+                      <li class="page-item disabled"><a href="#" class="page-link"> <i class="fa fa-angle-right sr-only"></i></a></li>
+                    {% endif %}
+                      
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </main>
+        <aside class="col-lg-4">
+          <!-- Widget [Search Bar Widget]-->
+          <div class="widget search">
+            {% include "blog_search.html" %}
+          </div>
+          <!-- Widget [Latest Posts Widget]        -->
+          <div class="widget latest-posts">
+            <header>
+              <h3 class="h6">Letest Posts</h3>
+            </header>
+            <div class="blog-posts"><a href="#">
+                {% for recent in recentPost %}
+                  <div class="item d-flex align-items-center">
+                    <div class="image"><img src="{{ recent.image.url }}" alt="..." class="img-fluid"></div>
+                    <div class="title"><strong>{{ recent.title }}</strong>
+                      <div class="d-flex align-items-center">
+                        <div class="views"><i class="icon-eye"></i> {{ recent.blog_post_views }}</div>
+                        <div class="comments"><i class="icon-comment"></i></div>
+                      </div>
+                    </div>
+                  </div></a>
+                {% endfor %}
+            </div>
+          </div>
+          <!-- Widget [Categories Widget]-->
+          <div class="widget categories">
+            <header>
+              <h3 class="h6">Categories</h3>
+            </header>
+            {% for p in categories %}
+              <div class="item d-flex justify-content-between"><a href="#">{{ p.name }}</a><span>{{ p.posts_count }}</span></div>
+            {% endfor %}
+          </div>
+          <!-- Widget [Tags Cloud Widget]-->
+          <div class="widget tags">       
+            <header>
+              <h3 class="h6">Tags</h3>
+            </header>
+            <ul class="list-inline">
+              <li class="list-inline-item"><a href="#" class="tag">#Business</a></li>
+              <li class="list-inline-item"><a href="#" class="tag">#Technology</a></li>
+              <li class="list-inline-item"><a href="#" class="tag">#Fashion</a></li>
+              <li class="list-inline-item"><a href="#" class="tag">#Sports</a></li>
+              <li class="list-inline-item"><a href="#" class="tag">#Economy</a></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    {% endblock content %}
+{% block script %}
+
+{% endblock script %}

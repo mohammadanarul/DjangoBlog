@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  <title>About</title>
+{% endblock title %}
+{% block stylesheet %}
+
+{% endblock stylesheet %}
+{% block content %}
+    <div class="banner">
+        <h1>Welcome to my About Page</h1>
+        <p>
+            I Love Django, javasctip, CSS3, HTML5 and other Programing language.
+        </p>
+    </div>
+    <div class="container about mt-3">
+        <center><h1>About</h1></center>
+        <div class="row">
+            <div class="col-md-6 mt-5 mb-3">
+                <h1>About Me.</h1>
+                <p>
+                    I'm a proffesional webdeveloper and back-end developer.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ipsam dignissimos totam nam provident beatae quisquam repellendus. Ab debitis dolor tenetur exercitationem. Eum aliquid, vero doloremque numquam dolorem sint optio aperiam exercitationem esse, perspiciatis fugit itaque dolores tenetur! Non omnis tenetur rem. Accusamus, id! Dolor assumenda animi libero incidunt praesentium!
+                </p>
+            </div>
+             <div class="col-md-6 about-skill mt-5 mb-3">
+                <h1>My Skills</h1>
+                <h4>Django</h4>
+                <div class="progress" style="border-radius: 8px;">
+                    <div class="progress-bar" style="width: 95%; border-radius: 8px;">95%</div>
+                </div>
+                <h4>Font-end Developer</h4>
+                <div class="progress" style="border-radius: 8px;">
+                    <div class="progress-bar" style="width: 80%; border-radius: 8px;">80%</div>
+                </div>
+                <h4>Digital Marketing</h4>
+                <div class="progress" style="border-radius: 8px;">
+                    <div class="progress-bar" style="width: 50%; border-radius: 8px;">50%</div>
+                </div>
+                <h4>Social Marketing</h4>
+                <div class="progress" style="border-radius: 8px;">
+                    <div class="progress-bar" style="width: 60%; border-radius: 8px;">60%</div>
+                </div>
+                <h4>Bloger Writing</h4>
+                <div class="progress" style="border-radius: 8px;">
+                    <div class="progress-bar" style="width: 70%; border-radius: 8px;">70%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Our services -->
+    <div class="our_services mt-5 mb-5">
+            <h1>Our Services</h1>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit sint quibusdam molestias eveniet,
+            </p>
+    </div>
+    <!-- Our Team  -->
+    <section class="our-webcoderskull padding-lg">
+        <div class="container">
+          <div class="row heading heading-icon">
+              <h2>Our Team</h2>
+          </div>
+          <ul class="row">
+            <li class="col-12 col-md-6 col-lg-3">
+                <div class="cnt-block equal-hight" style="height: 349px;">
+                  <figure><img src="{% static 'img/parsonal.jpg' %}" class="img-responsive" alt=""></figure>
+                  <h3><a href="http://www.webcoderskull.com/">Mohammad Anarul</a></h3>
+                  <p>Full-Stack Developer/Bloger</p>
+                  <ul class="follow-us clearfix">
+                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                  </ul>
+                </div>
+            </li>
+            <li class="col-12 col-md-6 col-lg-3">
+                <div class="cnt-block equal-hight" style="height: 349px;">
+                  <figure><img src="{% static 'img/team1.png' %}" class="img-responsive" alt=""></figure>
+                  <h3><a href="#">Abdur Rahim </a></h3>
+                  <p>Freelance Web Developer</p>
+                  <ul class="follow-us clearfix">
+                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                  </ul>
+                </div>
+            </li>
+            <li class="col-12 col-md-6 col-lg-3">
+                <div class="cnt-block equal-hight" style="height: 349px;">
+                  <figure><img src="{% static 'img/team4.png' %}" class="img-responsive" alt=""></figure>
+                  <h3><a href="http://www.webcoderskull.com/">Mohammad Angur </a></h3>
+                  <p>Social marketing/Deseinger</p>
+                  <ul class="follow-us clearfix">
+                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                  </ul>
+                </div>
+             </li>
+            <li class="col-12 col-md-6 col-lg-3">
+                <div class="cnt-block equal-hight" style="height: 349px;">
+                  <figure><img src="{% static 'img/team2.png' %}" class="img-responsive" alt=""></figure>
+                  <h3><a href="http://www.webcoderskull.com/">Mohammad Maruf </a></h3>
+                  <p>Digital Maeketing/Seo</p>
+                  <ul class="follow-us clearfix">
+                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                  </ul>
+                </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+{% endblock content %}
+{% block script %}
+
+{% endblock script %}

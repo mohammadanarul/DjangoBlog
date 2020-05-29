@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% block stylesheet %}
+<style>
+
+</style>
+{% endblock stylesheet %}
+{% block content %}
+<div class="container card-body">
+    {% for message in messages %}
+      <div class="alert alert-{{ message }}" role="alert">
+        {{ message }}
+      </div>
+    {% endfor %}
+    <a href="{% url 'blog:ceartePost' %}" class="btn btn-outline-primary pull pull-right">Post Add</a>
+    <br /><br />
+
+    <div class="row">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Author</th>
+                <th scope="col">Title</th>
+                <th scope="col">Posted On</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            {% for p in userPost %}
+            <tbody>
+              <tr>
+                <th scope="row">{{ p.id }}</th>
+                <td>{{ userAuthor.name }}</td>
+                <td>{{ p.title }}</td>
+                <td>{{ p.posted_on }}</td>
+                <td><a href="{% url 'blog:deletePost' pk=p.id %}"><button type="button" class="btn btn-outline-danger border-0">Delete</button></a> || <a href="{% url 'blog:update' pk=p.id %}"><button type="button" class="btn btn-outline-info border-0">Exit</button></a></td>
+                <td><a href="{% url 'blog:post' id=p.id %}">View</a></td>
+              </tr>
+            </tbody>
+            {% endfor %}
+          </table>
+    </div>
+    <!-- Profile Main Contacr End -->
+</div>
+{% endblock content %}
+{% block script %}
+
+{% endblock script %}
