@@ -132,10 +132,10 @@
             <div class="latest-posts">
               {% for recent_post in recentPost %}
                   <a href="{% url 'blog:post' id=recent_post.id %}">
-                      <div class="post d-flex align-items-center">
-                      <div class="image"><img src="{{ recent_post.image.url }}" alt="..." class="img-fluid"></div>
-                      <div class="title"><strong>{{ recent_post.title }}</strong><span class="date last-meta">{{ recent_post.posted_on }}</span></div>
-                      </div>
+                    <div class="post d-flex align-items-center">
+                    <div class="image"><img src="{{ recent_post.image.url }}" alt="..." class="img-fluid"></div>
+                    <div class="title"><strong>{{ recent_post.title }}</strong><span class="date last-meta">{{ recent_post.posted_on }}</span></div>
+                    </div>
                   </a>
               {% endfor %}
             </div>
