@@ -22,7 +22,7 @@ class createUserPost(forms.ModelForm):
 class createUserProfile(forms.ModelForm):
     class Meta:
         model = author
-        fields = ['profile_picture', 'datails']
+        fields = ['profile_picture', 'profile_background_picture', 'datails']
 
 class createCategoryForm(forms.ModelForm):
     class Meta:

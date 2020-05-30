@@ -28,7 +28,11 @@
     margin-left: auto;
     margin-right: auto;
 }
-
+.logo-picture img:hover{
+    font-family: "FontAwesome";
+    content: "\f030";
+    color: #000000;
+}
 .recentPost img 
 {
     position: relative;
