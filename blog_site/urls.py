@@ -14,6 +14,6 @@ urlpatterns = [
     path('weather', weather, name='weather'),
     path('register', accounts_views.userRegister, name='register'),
     path('activate/<uid>/<token>', accounts_views.userAccountActivate, name='activate'),
-    path('login', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
-    path('logout', auth_views.LogoutView.as_view(template_name='accounts/logout.html'), name='logout'),
+    path('login', auth_views.LoginView.as_view(template_name='account/login.html'), name='login'),
+    path('logout', auth_views.LogoutView.as_view(template_name='account/logout.html'), name='logout'),
 ]
