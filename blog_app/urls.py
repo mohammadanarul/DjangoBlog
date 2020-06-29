@@ -3,9 +3,6 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from blog_app.views import (
-    userRegister,
-    userLogin,
-    userLogOut,
 	homeView,
 	blogView,
 	postView,
@@ -28,9 +25,6 @@ urlpatterns = [
     path('', homeView, name='home'),
     path('post/<int:id>/', postView, name='post'),
     path('blog/', blogView, name='BlogPost'),
-    path('register/', userRegister, name='register'),
-    path('login/', userLogin, name='login'),
-    path('userlogout/', userLogOut, name='logOut'),
     path('contact/', userContact, name='contact'),
     path("create-user-profile/", makeUserProfile, name='create-user-profile'),
     path('user-post/<name>/', userProfilePost, name='user-post'),

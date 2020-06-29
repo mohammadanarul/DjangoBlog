@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # 'allauth.socialaccount',
 
     'blog_app',
+    'accounts',
 
     'ckeditor',
     'ckeditor_uploader'
@@ -146,12 +147,19 @@ django_heroku.settings(locals())
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Authenticated 
-# AUTHENTICATION_BACKENDS = (
-#     'django.contrib.auth.backends.ModelBackend',
-#     'allauth.account.auth_backends.AuthenticationBackend',
-# )
+LOGIN_REDIRECT_URL ='/'
 
-# SITE_ID = 1
+# Email confirmation send
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'ican4654@gmail.com'
+EMAIL_HOST_PASSWORD = 'MD367075bd'
+EMAIL_PORT = 587
 
-# LOGIN_REDIRECT_URL = '/'
+# AWS_ACCESS_KEY_ID = ''
+# AWS_SECRET_ACCESS_KEY = ''
+# AWS_STORAGE_BUCKET_NAME = ''
+
+# AWS_S3_FILE_OVERWRITE = ''
+# AWS_DEFAULT_ACL = ''
+# DEFAULT_FILE_STORAGE = ''

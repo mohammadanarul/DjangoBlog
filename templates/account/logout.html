@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head_title %}logout{% endblock head_title %}
+{% block content %}
+<div class="container mt-5 pt-5">
+  <ul>
+    <li><a href="{% url 'login' %}">Login</a></li><br/>
+    <li><a href="{% url 'register' %}">Register</a></li>
+  </ul>
+</div>
+{% endblock content %}

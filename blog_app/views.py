@@ -6,47 +6,14 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .forms import CreateUserForm, createUserPost, createUserProfile, userCommentForm, createCategoryForm
 from django.contrib import messages
-from django.conf import settings
 from django.db.models import Q, Count 
-# Create your views here
-# User login and singup or contact section start
-def userRegister(request):
-	if request.user.is_authenticated:
-		return redirect('/home')
-	else:
-		form = CreateUserForm()
-		if request.method == 'POST':
-			form = CreateUserForm(request.POST)
-			if form.is_valid():
-				form.save()
-				user=form.cleaned_data.get('username')
-				messages.success(request, 'Account was create for ' + user)
-			return redirect('/login')
-		context	={
-			'form': form,
-		}
-		return render(request, 'account/register.html', context)
-def userLogin(request):
-	if request.user.is_authenticated:
-		return redirect('blog:home')
-	else:
-		if request.method == 'POST':
-			user = request.POST.get('username')
-			password = request.POST.get('password')
-			auth = authenticate(request, username=user, password=password)
-			if auth is not None:
-				login(request, auth)
-				# user=form.cleaned_data.get('username')
-				messages.success(request, 'Welcome ' + user + '\nYour Account successfully Login')
-				return redirect('blog:home')
-			else:
-				messages.info(request, 'Your Username Or Password is incorrect')
-		templete_name = 'account/login.html'
-	return render(request, templete_name)
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.conf import settings
+from django.core.mail import send_mail
+from .tokens import userAccountRegisterActiveTokenGenerate
 
-def userLogOut(request):
-	logout(request)
-	return redirect('blog:home')
+# Create your views here
 
 def userContact(request):
 	templete_name = 'account/contact.html'
