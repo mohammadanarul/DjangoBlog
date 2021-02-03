@@ -152,8 +152,8 @@ LOGIN_REDIRECT_URL ='/'
 # Email confirmation send
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'ican4654@gmail.com'
-EMAIL_HOST_PASSWORD = 'MD367075bd'
+EMAIL_HOST_USER = 'youergmail@gmail.com'
+EMAIL_HOST_PASSWORD = 'yourpassword'
 EMAIL_PORT = 587
 
 # AWS_ACCESS_KEY_ID = ''
