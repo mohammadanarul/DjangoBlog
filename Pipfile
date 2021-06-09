@@ -28,7 +28,7 @@ urllib3 = "==1.25.9"
 whitenoise = "==5.0.1"
 Pillow = "==7.1.2"
 six = "*"
-django = "==2.2"
+django = "==2.2.22"
 bs4 = "*"
 
 [requires]
